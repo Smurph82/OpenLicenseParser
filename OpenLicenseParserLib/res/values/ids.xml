@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <item name="tag_holder" 	type="id">0x1000001</item>
+    <item name="tag_url" 		type="id">0x1000002</item>
+    <item name="tag_position" 	type="id">0x1000003</item>
+    
+</resources>
