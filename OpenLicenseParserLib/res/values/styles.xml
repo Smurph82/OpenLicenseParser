@@ -1,20 +1,30 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:license="http://schemas.android.com/apk/res-auto">
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Light"/>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="noticeFilesTextColor">@android:color/black</item>
+        <item name="linkTextColor">@color/text_link</item>
+        <item name="licenseTextColor">@android:color/black</item>
+        <item name="licenseTextBackgroundColor">@color/license_background</item>
+        <item name="bulletPointImage">@drawable/bullet_point</item>
+    </style>
+
+    <style name="TextView" parent="@android:style/Widget.TextView" />
+
+    <style name="TextView.NoticeforFile">
+        <item name="android:textColor">?attr/noticeFilesTextColor</item>
+    </style>
+    
+    <style name="TextView.LinkText">
+        <item name="android:textColor">?attr/linkTextColor</item>
+    </style>
+    
+    <style name="TextView.License">
+        <item name="android:textColor">?attr/licenseTextColor</item>
+        <item name="android:background">?attr/licenseTextBackgroundColor</item>
     </style>
 
 </resources>

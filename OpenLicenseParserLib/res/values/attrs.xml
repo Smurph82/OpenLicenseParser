@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LicenseView">
+        <attr name="noticeFilesTextColor" 		format="reference|color"/>
+        <attr name="linkTextColor" 				format="reference|color"/>
+        <attr name="licenseTextColor" 			format="reference|color"/>
+        <attr name="licenseTextBackgroundColor" format="reference|color"/>
+        <attr name="bulletPointImage"			format="reference|"/>
+    </declare-styleable>
+
+</resources>

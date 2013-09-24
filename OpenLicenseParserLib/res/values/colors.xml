@@ -2,6 +2,6 @@
 <resources>
 
     <color name="license_background">#ffeeeeee</color>
-    <color name="text_link_text">#ff0099CC</color>
+    <color name="text_link">#ff0099CC</color>
 
 </resources>
