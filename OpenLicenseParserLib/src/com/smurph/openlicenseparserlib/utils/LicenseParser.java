@@ -147,7 +147,7 @@ public class LicenseParser {
         if (node == null) {
             return null;
         }
-        return node.getNamedItem(attributeName).getNodeValue();
+        return node.getNamedItem(attributeName).getNodeValue().trim().replace("\t", "");
     }
 	
 	/**
@@ -161,7 +161,7 @@ public class LicenseParser {
         Node node = root.getElementsByTagName(tagName).item(index);
         if (node == null) {
             return null;
-        }
-        return ((Element)node).getTextContent();
+        }        
+        return ((Element)node).getTextContent().trim().replace("\t", "");
     }
 }
