@@ -33,8 +33,8 @@ import com.smurph.openlicenseparserlib.R;
 
 public class LicenseAdapter extends ArrayAdapter<LicenseInfo> {
 	
-	public LicenseAdapter(Context context, int resource, LicenseInterface onClickCallBack) {
-		super(context, resource);
+	public LicenseAdapter(Context context, LicenseInterface onClickCallBack) {
+		super(context, -1);
 		mOnClickCallBack = 	onClickCallBack;
 		mInflater = 		LayoutInflater.from(context);
 	}
