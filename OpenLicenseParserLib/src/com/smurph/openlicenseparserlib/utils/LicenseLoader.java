@@ -22,6 +22,7 @@ import java.util.List;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.text.TextUtils;
 
 public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
@@ -29,7 +30,15 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 	private List<LicenseInfo> mEntries;
 	private List<File> mFiles;
 	private String mXml;
-
+	private final boolean mFromAssets;
+	
+	private final String mPathSeparator = System.getProperty("file.separator");
+	
+	public LicenseLoader(Context context) {
+		super(context);
+		mFromAssets = true;		
+	}
+	
 	/**
 	 * 
 	 * @param context
@@ -37,6 +46,7 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 	 */
 	public LicenseLoader(Context context, String[] filePaths) {
 		super(context);
+		mFromAssets = false;
 		List<File> files = new ArrayList<File>(filePaths.length);
 		for (String path : filePaths)
 			if (!files.contains(path))
@@ -51,6 +61,7 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 	 */
 	public LicenseLoader(Context context, List<File> files) {
 		super(context);
+		mFromAssets = false;
 		mFiles = files;
 	}
 	
@@ -61,6 +72,7 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 	 */
 	public LicenseLoader(Context context, String xml) {
 		super(context);
+		mFromAssets = false;
 		mXml = xml;
 	}
 
@@ -73,8 +85,18 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 			
 			parser = new LicenseParser();
 			
+			if (mFromAssets) {
+				AssetManager am = getContext().getAssets();
+				String path = "licenses";
+				String[] files = am.list(path);
+				
+				for (String file : files) {
+					mEntries.addAll(parser.parseLicenseFile(am.open(path + mPathSeparator + file)));
+				}
+			}
+			
 			// If we have xml files
-			if (mFiles!=null) {
+			if (mFiles!=null && !mFromAssets) {
 				for (File file : mFiles) {
 					if (!file.exists())
 						continue;
@@ -84,7 +106,7 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 			}
 			
 			// If a xml string was provided
-			if (!TextUtils.isEmpty(mXml)) {
+			if (!TextUtils.isEmpty(mXml) && !mFromAssets) {
 				mEntries.addAll(parser.parseLicenseFile(mXml));
 			}
 			return mEntries;
