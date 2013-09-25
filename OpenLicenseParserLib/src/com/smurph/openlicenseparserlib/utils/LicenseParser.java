@@ -17,6 +17,7 @@
 package com.smurph.openlicenseparserlib.utils;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,24 @@ public class LicenseParser {
 		try {
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			doc = db.parse(file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return parseLicenseFile(doc);
+	}
+	
+	/**
+	 * 
+	 * @param inputStream
+	 * @return
+	 */
+	public List<LicenseInfo> parseLicenseFile(InputStream inputStream) {
+		Document doc = null;
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			doc = db.parse(inputStream);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
