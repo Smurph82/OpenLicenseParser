@@ -76,7 +76,7 @@ public class LicenseFragment extends ListFragment implements
 
 	@Override
 	public Loader<List<LicenseInfo>> onCreateLoader(int id, Bundle args) {
-		return new LicenseLoader(getActivity(), args.getStringArray(FILES_PATHS));
+		return new LicenseLoader(getActivity());
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class LicenseFragment extends ListFragment implements
 	private LicenseAdapter mAdapter;
 	
 	/**  */
-	public static final String FILES_PATHS = 		"file_paths";
+	public static final String FILES_PATHS = "file_paths";
 	/**  */
-	public static final String FRAG_TAG = 			"fragment_license";
+	public static final String FRAG_TAG = "fragment_license";
 }
