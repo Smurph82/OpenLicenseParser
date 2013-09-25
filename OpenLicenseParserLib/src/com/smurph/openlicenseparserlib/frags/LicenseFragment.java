@@ -18,6 +18,7 @@ package com.smurph.openlicenseparserlib.frags;
 
 import java.util.List;
 
+import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Intent;
@@ -45,12 +46,19 @@ public class LicenseFragment extends ListFragment implements
 		setListShown(false);
 		
 		ListView list = getListView();
+		// Set selector to transparent so the user does not see the clicking of a list item
 		list.setSelector(R.drawable.list_selector_transparent);
-		mAdapter = new LicenseAdapter(getActivity(), -1, this);
+		// Create adapter
+		mAdapter = new LicenseAdapter(getActivity(), this);
+		// Set list adapter
 		list.setAdapter(mAdapter);
+		// Show no divider
 		list.setDividerHeight(0);
+		// List is not clickable
 		list.setClickable(false);
+		// Set background color to white
 		list.setBackgroundColor(Color.WHITE);
+		// Set on scroll listener so we no when the list is scrolled
 		list.setOnScrollListener(new OnScrollListener() {			
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -58,6 +66,9 @@ public class LicenseFragment extends ListFragment implements
 				case OnScrollListener.SCROLL_STATE_FLING:
 				case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
 					if (mAdapter!=null)
+						// If user had clicked on the link textView 
+						// and then scrolled while still holding down
+						// the textView this show it being released.
 						mAdapter.onListScrolled(true);
 					break;
 
@@ -70,13 +81,23 @@ public class LicenseFragment extends ListFragment implements
 					int visibleItemCount, int totalItemCount) { // Nothing
 			}
 		});
-		
+		// Load the list with the loader
 		getLoaderManager().restartLoader(0, getArguments(), this);
 	}
 
 	@Override
 	public Loader<List<LicenseInfo>> onCreateLoader(int id, Bundle args) {
-		return new LicenseLoader(getActivity());
+		switch (id) {
+		case FileLocationType.TYPE_ASSETS:
+			return new LicenseLoader(getActivity());
+		case FileLocationType.TYPE_STRING_FILE_PATHS:
+			return new LicenseLoader(getActivity(), args.getStringArray(FILES_PATHS));
+		case FileLocationType.TYPE_STRING_XML:
+			return new LicenseLoader(getActivity(), args.getStringArray(FILES_PATHS));
+
+		default:
+			return null;
+		}
 	}
 
 	@Override
@@ -99,11 +120,31 @@ public class LicenseFragment extends ListFragment implements
 	public void onLinkClicked(Uri uri) {
 		startActivity(new Intent(Intent.ACTION_VIEW, uri));
 	}
+	
+	/** The way you want the ListFragment to load your license files */
+	public interface FileLocationType {
+		/** Load from assets folder */
+		final int TYPE_ASSETS = 			1;
+		/** {@code String[]} of the files full path to load */
+		final int TYPE_STRING_FILE_PATHS = 	1<<1;
+		/** {@code List<File>} of all the license files to load */
+		final int TYPE_LIST_FILES =			1<<2;
+		/** {@code String} of an xml file that can be loaded */
+		final int TYPE_STRING_XML =			1<<3;
+	}
 
+	/** The adapter for this {@link ListFragment} */
 	private LicenseAdapter mAdapter;
 	
-	/**  */
+	/** Tag to add to the bundle sent to this fragment when loading from a string xml */
+	public static final String XML_STRING = "xml_string";
+	
+	/** Tag to add to the bundle sent to this fragment when loading from a {@code String[]} */
 	public static final String FILES_PATHS = "file_paths";
-	/**  */
+	
+	/** An integer from the {@link FileLocationType} interface*/
+	public static final String FILES_LOCATION_TYPE = "file_location_type";
+	
+	/** Tag of this Fragment for locating in the {@link FragmentManager} */
 	public static final String FRAG_TAG = "fragment_license";
 }
