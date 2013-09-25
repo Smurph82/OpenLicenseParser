@@ -21,7 +21,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.os.Environment;
 
 import com.smurph.openlicenseparserlib.frags.LicenseFragment;
 
@@ -32,19 +31,19 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+//		String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 		
 		FragmentManager fm = getFragmentManager();
 		
 		if (savedInstanceState==null) {
 			Fragment frag = new LicenseFragment();
 			
-			Bundle args = new Bundle(1);
-			args.putStringArray(LicenseFragment.FILES_PATHS, 
-					new String[] { path+"/"+"license_test_one.xml", 
-					path+"/"+"license_test_two_three.xml" });
-			
-			frag.setArguments(args);
+//			Bundle args = new Bundle(1);
+//			args.putStringArray(LicenseFragment.FILES_PATHS, 
+//					new String[] { path+"/"+"license_test_one.xml", 
+//					path+"/"+"license_test_two_three.xml" });
+//			
+//			frag.setArguments(args);
 			
 			if (frag!=null) {
 				fm.beginTransaction().add(R.id.container, frag, LicenseFragment.FRAG_TAG)
