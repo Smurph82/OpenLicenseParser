@@ -50,7 +50,7 @@
         style="@style/TextView.License"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
+        android:layout_below="@+id/textView2"
         android:layout_marginTop="8dp"
         android:paddingBottom="5dp"
         android:paddingLeft="3dp"
