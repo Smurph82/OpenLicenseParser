@@ -23,7 +23,6 @@ import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Intent;
 import android.content.Loader;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.AbsListView;
@@ -44,6 +43,7 @@ public class LicenseFragment extends ListFragment implements
 		super.onActivityCreated(savedInstanceState);
 		
 		setListShown(false);
+		setEmptyText(getString(R.string.no_licenses_found));
 		
 		ListView list = getListView();
 		// Set selector to transparent so the user does not see the clicking of a list item
@@ -57,7 +57,7 @@ public class LicenseFragment extends ListFragment implements
 		// List is not clickable
 		list.setClickable(false);
 		// Set background color to white
-		list.setBackgroundColor(Color.WHITE);
+//		list.setBackgroundColor(Color.WHITE);
 		// Set on scroll listener so we no when the list is scrolled
 		list.setOnScrollListener(new OnScrollListener() {			
 			@Override
@@ -82,7 +82,8 @@ public class LicenseFragment extends ListFragment implements
 			}
 		});
 		// Load the list with the loader
-		getLoaderManager().restartLoader(0, getArguments(), this);
+		Bundle args = getArguments();
+		getLoaderManager().restartLoader(args.getInt(FILES_LOCATION_TYPE, 0), args, this);
 	}
 
 	@Override
@@ -93,9 +94,10 @@ public class LicenseFragment extends ListFragment implements
 		case FileLocationType.TYPE_STRING_FILE_PATHS:
 			return new LicenseLoader(getActivity(), args.getStringArray(FILES_PATHS));
 		case FileLocationType.TYPE_STRING_XML:
-			return new LicenseLoader(getActivity(), args.getStringArray(FILES_PATHS));
+			return new LicenseLoader(getActivity(), args.getString(FILES_PATHS));
 
 		default:
+			stopListAnimation();
 			return null;
 		}
 	}
@@ -103,12 +105,7 @@ public class LicenseFragment extends ListFragment implements
 	@Override
 	public void onLoadFinished(Loader<List<LicenseInfo>> loader, List<LicenseInfo> data) {
 		mAdapter.addAll(data);
-		
-		if (isResumed()) {
-            setListShown(true);
-        } else {
-            setListShownNoAnimation(true);
-        }
+		stopListAnimation();
 	}
 
 	@Override
@@ -119,6 +116,17 @@ public class LicenseFragment extends ListFragment implements
 	@Override
 	public void onLinkClicked(Uri uri) {
 		startActivity(new Intent(Intent.ACTION_VIEW, uri));
+	}
+	
+	/**
+	 * Called when the loading is complete 
+	 */
+	private void stopListAnimation() {
+		if (isResumed()) {
+            setListShown(true);
+        } else {
+            setListShownNoAnimation(true);
+        }
 	}
 	
 	/** The way you want the ListFragment to load your license files */
