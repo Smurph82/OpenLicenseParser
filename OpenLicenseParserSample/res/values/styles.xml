@@ -3,6 +3,7 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@android:color/white</item>
         <!-- These are just examples of how to override the theming of the library project -->
         <!-- <item name="noticeFilesTextColor">@android:color/holo_green_dark</item> -->
         <!-- <item name="linkTextColor">#880000ff</item> -->
