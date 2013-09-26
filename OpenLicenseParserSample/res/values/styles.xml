@@ -1,14 +1,31 @@
 <resources>
-    <style name="AppBaseTheme" parent="android:Theme.Light"/>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light" />
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:windowBackground">@android:color/white</item>
-        <!-- These are just examples of how to override the theming of the library project -->
-        <!-- <item name="noticeFilesTextColor">@android:color/holo_green_dark</item> -->
-        <!-- <item name="linkTextColor">#880000ff</item> -->
-        <!-- <item name="licenseTextColor">@android:color/holo_green_dark</item> -->
-        <!-- <item name="licenseTextBackgroundColor">#55000077</item> -->
+    </style>
+
+    <style name="AppTheme.Orange">
+        <item name="android:windowBackground">@color/window_background_gray</item>
+        <item name="android:actionBarStyle">@style/ActionBarOrangeTheme</item>
+        <item name="noticeFilesTextColor">@color/text_nof_orange</item>
+        <item name="linkTextColor">@color/text_link_orange</item>
+        <item name="licenseTextColor">@android:color/white</item>
+        <item name="licenseTextBackgroundColor">@color/license_background_orange</item>
+        <!-- To remove the bullet point -->
+        <!-- <item name="bulletPointImage">@null</item> -->
+    </style>
+
+    <style name="ActionBarOrangeTheme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_background_textured_orange</item>
+        <item name="android:backgroundSplit">@drawable/ab_background_textured_orange</item>
+        <item name="android:titleTextStyle">@style/ActionBarTitleTheme</item>
+    </style>
+
+    <style name="ActionBarTitleTheme" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>
