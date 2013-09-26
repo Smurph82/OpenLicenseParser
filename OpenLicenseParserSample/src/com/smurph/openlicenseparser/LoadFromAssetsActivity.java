@@ -26,13 +26,7 @@ import com.smurph.openlicenseparserlib.frags.LicenseFragment.FileLocationType;
 public class LoadFromAssetsActivity extends BaseActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-
-	@Override
 	void loadFragment() {
-
 		Fragment frag = new LicenseFragment();
 		Bundle args = 	new Bundle(1);
 		
