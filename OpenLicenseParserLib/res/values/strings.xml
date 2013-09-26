@@ -4,5 +4,6 @@
     <string name="app_name">OpenLicenseLib</string>
     <string name="bullet_point">Bullet point</string>
     <string name="notice_for_files">Notice for files:</string>
+    <string name="no_licenses_found">No licenses found.</string>
 
 </resources>
