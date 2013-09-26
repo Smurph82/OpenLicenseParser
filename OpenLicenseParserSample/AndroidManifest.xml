@@ -32,6 +32,10 @@
         <activity
             android:name="com.smurph.openlicenseparser.LoadFromXmlStringActivity"
             android:label="@string/app_name" />
+        <activity
+            android:name="com.smurph.openlicenseparser.ThemedActivity"
+            android:label="@string/app_name"
+        	android:theme="@style/AppTheme.Orange" />
     </application>
 
 </manifest>
