@@ -32,8 +32,6 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 	private String mXml;
 	private final boolean mFromAssets;
 	
-	private final String mPathSeparator = System.getProperty("file.separator");
-	
 	public LicenseLoader(Context context) {
 		super(context);
 		mFromAssets = true;		
@@ -85,13 +83,18 @@ public class LicenseLoader extends AsyncTaskLoader<List<LicenseInfo>> {
 			
 			parser = new LicenseParser();
 			
+			// If licenses are in the asset folder of the app
 			if (mFromAssets) {
 				AssetManager am = getContext().getAssets();
 				String path = "licenses";
 				String[] files = am.list(path);
 				
 				for (String file : files) {
-					mEntries.addAll(parser.parseLicenseFile(am.open(path + mPathSeparator + file)));
+					mEntries.addAll(parser.parseLicenseFile(am.open(path + File.separator + file)));
+				}
+				// Clean up
+				if (am!=null) {
+					am=null;
 				}
 			}
 			
