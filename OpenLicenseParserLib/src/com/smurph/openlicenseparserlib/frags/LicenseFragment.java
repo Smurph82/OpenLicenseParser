@@ -81,7 +81,13 @@ public class LicenseFragment extends ListFragment implements
 		});
 		// Load the list with the loader
 		Bundle args = getArguments();
-		getLoaderManager().restartLoader(args.getInt(FILES_LOCATION_TYPE, FileLocationType.TYPE_ASSETS), args, this);
+		int type = 0;
+		if (args!=null) {
+			type = args.getInt(FILES_LOCATION_TYPE, FileLocationType.TYPE_ASSETS);
+		} else {
+			type = FileLocationType.TYPE_ASSETS;
+		}
+		getLoaderManager().restartLoader(type, args, this);
 	}
 
 	@Override
