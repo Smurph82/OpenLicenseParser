@@ -36,11 +36,14 @@ public class MainActivity extends ListActivity {
 		mClazzIndex.put(1, packageName + ".LoadFromFilesActivity");
 		mClazzIndex.put(2, packageName + ".LoadFromXmlStringActivity");
 		mClazzIndex.put(3, packageName + ".ThemedActivity");
+		mClazzIndex.put(4, packageName + ".FragmentInXml");
 		
 		setListAdapter(new ArrayAdapter<String>(this, 
 				android.R.layout.simple_list_item_1, 
 				android.R.id.text1, 
-				new String[] { "Load from assets", "Load from files", "Load from xml string", "Themed activity" }));
+				new String[] { "Load from assets", "Load from files",
+						"Load from xml string", "Themed activity",
+						"Fragment in xml" }));
 	}
 
 	@Override
