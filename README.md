@@ -72,4 +72,9 @@ limitations under the License.</text>
 ```
 
 ###The library project
-![Alt text](/ScreenShots/license_list_default_theme.png "Optional title")
+It is very easy to use the library project, as it uses a standard ListFragment. 
+######Note: 
+> This project was built for Android 4+, so the android.support.v4.app.ListFragment was not used. If you wish to use this library in a project that uses the android.support.v4.app.FragmentActivity then you will need to clone this project and update it yourself.
+
+
+![Main Smaple app](/ScreenShots/license_list_default_theme.png "Sample app screen shot.")
