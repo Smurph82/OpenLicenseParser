@@ -56,8 +56,6 @@ public class LicenseFragment extends ListFragment implements
 		list.setDividerHeight(0);
 		// List is not clickable
 		list.setClickable(false);
-		// Set background color to white
-//		list.setBackgroundColor(Color.WHITE);
 		// Set on scroll listener so we no when the list is scrolled
 		list.setOnScrollListener(new OnScrollListener() {			
 			@Override
