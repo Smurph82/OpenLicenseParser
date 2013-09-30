@@ -4,7 +4,7 @@ OpenLicenseParser
 OpenLicenseParser is an Android library project that allows you to easily add references of licenses from other project's to your project. This porject works by reading a simple xml file that either you or hopefully the other developer has provided.
 
 ###Xml File
-The xml file can contain one to many references in one file. You could also have one xml file per license referenced. You can even mix and match meaning you have multiple xml file with multiple license in each of them. 
+The xml file can contain one to many references in one file. You could also have one xml file per license referenced. You can even mix and match meaning you can have multiple xml files with multiple licenses in each of them. All license files must currently be placed in the assets folder of your project in a new folder called "licenses". /assets/licenses/"license xml file name"
 
 #####An example of a single license reference xml file.
 ```
@@ -77,7 +77,7 @@ It is very easy to use the library project, as it uses a standard ListFragment.
 > This project was built for Android 4+, so the android.support.v4.app.ListFragment was not used. If you wish to use this library in a project that uses the android.support.v4.app.FragmentActivity then you will need to clone this project and update it yourself.
 
 You can use the LicenseFragment class like any other fragment by adding it to your Activity in code or in the xml.
-######Example of in code:
+#####Example of fragment in code:
 ```
 Fragment frag = new LicenseFragment();
 Bundle args = 	new Bundle(1);
@@ -93,10 +93,30 @@ if (frag != null) {
 			.commit();
 }
 ```
-The following image show what the LicenseFragment will look like by default.
+
+#####Example of fragment in xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.smurph.openlicenseparserlib.frags.LicenseFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
+```
+
+######Note:
+>Currently if you reference the fragment in the layout xml file you must place the license xml files in the assets folder as listed [above](https://github.com/Smurph82/OpenLicenseParser/edit/master/README.md#xml-file).
+
+The following image shows what the LicenseFragment will look like by default.
 
 ![Default LicenseFragment](/ScreenShots/license_list_default_theme.png "Default themed LicenseFragment")
 
-And yes if you want the LicenseFragment to fit to your apps color style you can theme the LicenseFragment as well using the styles.xml file in your apps projects res/values* folder.
+And yes if you want the LicenseFragment to fit to your apps color style, you can theme the LicenseFragment as well using the styles.xml file in your apps projects res/values* folder.
 
 ![Themed LicenseFragment](/ScreenShots/license_list_orange_theme.png "Orange themed LicenseFragment")
