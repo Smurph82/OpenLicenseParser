@@ -72,4 +72,4 @@ limitations under the License.</text>
 ```
 
 ###The library project
-<img src="https://github.com/Smurph82/OpenLicenseParser/blob/master/ScreenShots/license_list_default_theme.png">
+![Alt text](/ScreenShots/license_list_default_theme.png "Optional title")
