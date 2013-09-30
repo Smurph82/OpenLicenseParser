@@ -1,7 +1,9 @@
 OpenLicenseParser
 =================
 
-OpenLicenseParser is an Android library project that allows you to easily add references of licenses from other project's to your project. This porject works by reading a simple xml file that either you or hopefully the other developer has provided.
+OpenLicenseParser is an Android library project that allows you to easily add references of licenses from other project's to your project. This porject works by reading a simple xml file that either you or hopefully the other developer has provided. 
+
+I encourage developers to create their own license xml file and add it to their project and VC system. That way anyone who uses this library can just copy the license xml into their projects assets folder and be done with it.
 
 ###Xml File
 The xml file can contain one to many references in one file. You could also have one xml file per license referenced. You can even mix and match meaning you can have multiple xml files with multiple licenses in each of them. All license files must currently be placed in the assets folder of your project in a new folder called "licenses". /assets/licenses/"license xml file name"
