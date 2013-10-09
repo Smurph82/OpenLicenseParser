@@ -113,7 +113,7 @@ if (frag != null) {
 ```
 
 ######Note:
->Currently if you reference the fragment in the layout xml file you must place the license xml files in the assets folder as listed [above](https://github.com/Smurph82/OpenLicenseParser/edit/master/README.md#xml-file).
+>Currently if you reference the fragment in the layout xml file you must place the license xml files in the assets folder as listed [above](https://github.com/Smurph82/OpenLicenseParser#xml-file).
 
 The following image shows what the LicenseFragment will look like by default.
 
