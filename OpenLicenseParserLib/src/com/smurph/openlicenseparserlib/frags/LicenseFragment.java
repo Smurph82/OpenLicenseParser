@@ -56,6 +56,8 @@ public class LicenseFragment extends ListFragment implements
 		list.setDividerHeight(0);
 		// List is not clickable
 		list.setClickable(false);
+		// List turn the click sound off on the list item clicks
+		list.setSoundEffectsEnabled(false);
 		// Set on scroll listener so we no when the list is scrolled
 		list.setOnScrollListener(new OnScrollListener() {			
 			@Override
