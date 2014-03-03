@@ -21,7 +21,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.smurph.openlicenseparserlib.frags.LicenseFragment;
-import com.smurph.openlicenseparserlib.frags.LicenseFragment.FileLocationType;
+import com.smurph.openlicenseparserlib.utils.Constants;
+import com.smurph.openlicenseparserlib.utils.FileLocationType;
 
 public class LoadFromAssetsActivity extends BaseActivity {
 
@@ -30,7 +31,7 @@ public class LoadFromAssetsActivity extends BaseActivity {
 		Fragment frag = new LicenseFragment();
 		Bundle args = 	new Bundle(1);
 		
-		args.putInt(LicenseFragment.FILES_LOCATION_TYPE, FileLocationType.TYPE_ASSETS);
+		args.putInt(Constants.FILES_LOCATION_TYPE, FileLocationType.TYPE_ASSETS);
 		
 		frag.setArguments(args);
 

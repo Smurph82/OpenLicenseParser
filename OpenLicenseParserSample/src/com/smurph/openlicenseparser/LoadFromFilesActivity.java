@@ -28,7 +28,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.smurph.openlicenseparserlib.frags.LicenseFragment;
-import com.smurph.openlicenseparserlib.frags.LicenseFragment.FileLocationType;
+import com.smurph.openlicenseparserlib.utils.Constants;
+import com.smurph.openlicenseparserlib.utils.FileLocationType;
 
 public class LoadFromFilesActivity extends BaseActivity {
 
@@ -44,8 +45,8 @@ public class LoadFromFilesActivity extends BaseActivity {
 		Fragment frag = 		new LicenseFragment();
 		Bundle args = 			new Bundle(2);
 		
-		args.putStringArray(LicenseFragment.FILES_PATHS, files);
-		args.putInt(LicenseFragment.FILES_LOCATION_TYPE, FileLocationType.TYPE_STRING_FILE_PATHS);
+		args.putStringArray(Constants.FILES_PATHS, files);
+		args.putInt(Constants.FILES_LOCATION_TYPE, FileLocationType.TYPE_STRING_FILE_PATHS);
 		
 		frag.setArguments(args);
 

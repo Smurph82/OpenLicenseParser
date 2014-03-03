@@ -21,7 +21,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.smurph.openlicenseparserlib.frags.LicenseFragment;
-import com.smurph.openlicenseparserlib.frags.LicenseFragment.FileLocationType;
+import com.smurph.openlicenseparserlib.utils.Constants;
+import com.smurph.openlicenseparserlib.utils.FileLocationType;
 
 public class LoadFromXmlStringActivity extends BaseActivity {
 
@@ -30,8 +31,8 @@ public class LoadFromXmlStringActivity extends BaseActivity {
 		Fragment frag = new LicenseFragment();
 		Bundle args = 	new Bundle(2);
 		
-		args.putInt(LicenseFragment.FILES_LOCATION_TYPE, 	FileLocationType.TYPE_STRING_XML);
-		args.putString(LicenseFragment.FILES_PATHS, 		mXml);
+		args.putInt(Constants.FILES_LOCATION_TYPE, FileLocationType.TYPE_STRING_XML);
+		args.putString(Constants.FILES_PATHS, mXml);
 		
 		frag.setArguments(args);
 
