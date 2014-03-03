@@ -30,6 +30,8 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
 import com.smurph.openlicenseparserlib.R;
+import com.smurph.openlicenseparserlib.utils.Constants;
+import com.smurph.openlicenseparserlib.utils.FileLocationType;
 import com.smurph.openlicenseparserlib.utils.LicenseAdapter;
 import com.smurph.openlicenseparserlib.utils.LicenseInfo;
 import com.smurph.openlicenseparserlib.utils.LicenseInterface;
@@ -85,7 +87,7 @@ public class LicenseFragment extends ListFragment implements
 		Bundle args = getArguments();
 		int type = 0;
 		if (args!=null) {
-			type = args.getInt(FILES_LOCATION_TYPE, FileLocationType.TYPE_ASSETS);
+			type = args.getInt(Constants.FILES_LOCATION_TYPE, FileLocationType.TYPE_ASSETS);
 		} else {
 			type = FileLocationType.TYPE_ASSETS;
 		}
@@ -98,9 +100,9 @@ public class LicenseFragment extends ListFragment implements
 		case FileLocationType.TYPE_ASSETS:
 			return new LicenseLoader(getActivity());
 		case FileLocationType.TYPE_STRING_FILE_PATHS:
-			return new LicenseLoader(getActivity(), args.getStringArray(FILES_PATHS));
+			return new LicenseLoader(getActivity(), args.getStringArray(Constants.FILES_PATHS));
 		case FileLocationType.TYPE_STRING_XML:
-			return new LicenseLoader(getActivity(), args.getString(FILES_PATHS));
+			return new LicenseLoader(getActivity(), args.getString(Constants.FILES_PATHS));
 
 		default:
 			stopListAnimation();
@@ -134,30 +136,9 @@ public class LicenseFragment extends ListFragment implements
             setListShownNoAnimation(true);
         }
 	}
-	
-	/** The way you want the ListFragment to load your license files */
-	public interface FileLocationType {
-		/** Load from assets folder */
-		final int TYPE_ASSETS = 			1;
-		/** {@code String[]} of the files full path to load */
-		final int TYPE_STRING_FILE_PATHS = 	1<<1;
-		/** {@code List<File>} of all the license files to load */
-		final int TYPE_LIST_FILES =			1<<2;
-		/** {@code String} of an xml file that can be loaded */
-		final int TYPE_STRING_XML =			1<<3;
-	}
 
 	/** The adapter for this {@link ListFragment} */
 	private LicenseAdapter mAdapter;
-	
-	/** Tag to add to the bundle sent to this fragment when loading from a string xml */
-	public static final String XML_STRING = "xml_string";
-	
-	/** Tag to add to the bundle sent to this fragment when loading from a {@code String[]} */
-	public static final String FILES_PATHS = "file_paths";
-	
-	/** An integer from the {@link FileLocationType} interface*/
-	public static final String FILES_LOCATION_TYPE = "file_location_type";
 	
 	/** Tag of this Fragment for locating in the {@link FragmentManager} */
 	public static final String FRAG_TAG = "fragment_license";
