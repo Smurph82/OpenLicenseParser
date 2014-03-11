@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.smurph.openlicenseparserlib.frags;
+package com.smurph.openlicenseparserlib;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -23,6 +23,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.smurph.openlicenseparserlib.R;
+import com.smurph.openlicenseparserlib.frags.LicenseFragment;
 
 public class LicenseActivity extends Activity {
 
